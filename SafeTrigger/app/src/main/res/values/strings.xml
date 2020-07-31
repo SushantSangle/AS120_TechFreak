@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">SafeTrigger</string>
+    <string name="master_switch">Master Switch</string>
+    <string name="options_for_basic_trigger">Options For Basic trigger:</string>
+    <string name="emergency_contacts">Emergency contacts</string>
+    <string name="local_authorities">Local Authorities</string>
+    <string name="this_option_will_push_only_media_to_cloud">(This option will push only media to cloud without sending link to anyone)</string>
+    <string name="options_for_super_trigger">Options for Super Trigger:</string>
+    <string name="push_media">Push media and location</string>
+    <string name="push_media_o">Push media</string>
+    <string name="info_B">This is activated by pressing the power key three times. It provides you with the following options.</string>
+    <string name="info_A">This is activated by pressing the power key five times. It triggers all the checked options at once.(location is default in this mode)</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="contact_limit">You should select at least two contacts as emergency contacts (max 5)</string>
+    <string name="E_contact">Emergency Contacts</string>
+    <string name="message_contacts">Message Contacts</string>
+    <string name="select_a_contact_to_call">Select A contact to call</string>
+    <string name="call_emergency_number">Call Number</string>
+    <string name="channel_name">safeCheck</string>
+    <string name="channel_description">A constant running service to avoid not registering trigger</string>
+    <string name="cancel_channel">Cancel SOS</string>
+    <string name="cancel_discription">For a notification that allows you to cancel accidental SOS triggers</string>
+</resources>

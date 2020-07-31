@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SafeTrigger</string>
+    <string name="master_switch">मुख्य स्विच</string>
+    <string name="options_for_basic_trigger">मूळ ट्रिगर पर्याय:</string>
+    <string name="emergency_contacts">आपातकालीन संपर्क</string>
+    <string name="local_authorities">स्थानीय अधिकारी</string>
+    <string name="this_option_will_push_only_media_to_cloud">(हा पर्याय कोणासही दुवा न पाठवता केवळ माध्यमांना ढगात ढकलेल)</string>
+    <string name="options_for_super_trigger">सुपर ट्रिगरसाठी पर्याय</string>
+    <string name="push_media">मीडिया आणि स्थान पाठवा</string>
+    <string name="push_media_o">मीडिया पाठवा</string>
+    <string name="info_B">हे तीन वेळा पॉवर की दाबून सक्रिय केले जाते. हे आपल्याला खालील पर्याय प्रदान करते.</string>
+    <string name="info_A">हे पाच वेळा पॉवर बटण दाबून सक्रिय केले जाते. हे एकाच वेळी सर्व चेक केलेल्या पर्यायांना ट्रिगर करते. (या मोडमध्ये स्थान डीफॉल्ट आहे)</string>
+    <string name="add_contact">संपर्क जोडा</string>
+    <string name="contact_limit">आपत्कालीन संपर्क म्हणून आपण कमीत कमी दोन संपर्क निवडले पाहिजेत (कमाल 5)</string>
+    <string name="E_contact">आपत्कालीन संपर्क</string>
+    <string name="message_contacts">संपर्कांना संदेश पाठवा</string>
+    <string name="select_a_contact_to_call">कॉल करण्यासाठी संपर्क निवडा</string>
+    <string name="call_emergency_number">आणीबाणीच्या नंबरवर कॉल करा</string>
+    <string name="channel_name">safeCheck</string>
+    <string name="channel_description">ट्रट्रिगर ची नोंदनी ना होणे ताल्यसाथी सॅट सूर अस्नारी सेवा</string>
+</resources>

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">SafeTrigger</string>
+    <string name="master_switch">मुख्य स्विच</string>
+    <string name="options_for_basic_trigger">मूल ट्रिगर के लिए विकल्प:</string>
+    <string name="emergency_contacts">आपातकालीन संपर्क</string>
+    <string name="local_authorities">स्थानीय अधिकारी</string>
+    <string name="this_option_will_push_only_media_to_cloud">(यह विकल्प केवल मीडिया को किसी को लिंक भेजे बिना क्लाउड पर धकेल देगा)</string>
+    <string name="options_for_super_trigger">सुपर ट्रिगर के विकल्प:</string>
+    <string name="push_media">मीडिया और स्थान भेजें</string>
+    <string name="push_media_o">मीडिया भेजें</string>
+    <string name="info_B">इसे पावर बटन को तीन बार दबाकर सक्रिय किया जाता है। यह आपको निम्नलिखित विकल्प प्रदान करता है।</string>
+    <string name="info_A">इसे पावर बटन को पांच बार दबाकर सक्रिय किया जाता है। यह एक ही बार में सभी चेक किए गए विकल्पों को ट्रिगर करता है। (इस मोड में स्थान अनिवार्य है)</string>
+    <string name="add_contact">संपर्क जोड़ें</string>
+    <string name="contact_limit">आपको आपातकालीन संपर्कों के रूप में कम से कम 2 संपर्कों का चयन करना चाहिए (अधिकतम 5)</string>
+    <string name="E_contact">आपातकालीन संपर्क</string>
+    <string name="message_contacts">सम्पर्को को सन्देश भेजे</string>
+    <string name="select_a_contact_to_call">कॉल करने के लिए संपर्क का चयन करें</string>
+    <string name="call_emergency_number">आपातकालीन नंबर पर कॉल करें</string>
+    <string name="channel_name">safeCheck</string>
+    <string name="channel_description">ट्रिगर न दर्ज करने से बचने के लिए एक निरंतर चलने वाली सेवा</string>
+</resources>

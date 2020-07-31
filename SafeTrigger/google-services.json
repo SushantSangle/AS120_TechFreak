@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "130872139919",
+    "firebase_url": "https://poetic-nova-284319.firebaseio.com",
+    "project_id": "poetic-nova-284319",
+    "storage_bucket": "poetic-nova-284319.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130872139919:android:d9c1d2648d0295f560d0fa",
+        "android_client_info": {
+          "package_name": "com.Techfreaks.SafeTrigger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130872139919-h44e6sqe95eoa6hd4s24mpihc60ekv1s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmLWVGyrhG5cA_vg7cABn4jwaMHI7BP28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130872139919-h44e6sqe95eoa6hd4s24mpihc60ekv1s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

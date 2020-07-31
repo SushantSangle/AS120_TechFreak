@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/bground">
+
+    <Switch
+        android:id="@+id/Master_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:paddingStart="10pt"
+        android:paddingTop="5pt"
+        android:paddingEnd="10pt"
+        android:paddingBottom="10pt"
+        android:text="@string/master_switch"
+        android:textColor="@color/foreground"
+        android:textSize="10pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"   />
+    <ScrollView
+        android:id="@+id/MainScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/Master_switch"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="5pt"
+        >
+
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorPrimaryDark" />
+
+
+        <TextView
+            android:id="@+id/Option1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/options_for_basic_trigger"
+            android:textSize="10pt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/colorPrimaryDark"/>
+        <TextView
+            android:textSize="5pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/info_B"
+            android:textColor="@color/foreground_faint"
+            />
+
+        <CheckBox
+            android:id="@+id/contact_B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/emergency_contacts"
+            android:textSize="8pt"
+            android:padding="5pt"
+            android:checked="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Option1"
+            android:textColor="@color/foreground"/>
+
+        <CheckBox
+            android:id="@+id/local_auth_B"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="5pt"
+            android:paddingEnd="5pt"
+            android:paddingBottom="5pt"
+            android:textSize="8pt"
+            android:checked="true"
+            android:text="@string/local_authorities"
+            android:textColor="@color/foreground"/>
+        <CheckBox
+            android:id="@+id/media_push_B"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="8pt"
+            android:paddingStart="5pt"
+            android:paddingEnd="5pt"
+            android:checked="true"
+            android:text="@string/push_media"
+            android:textColor="@color/foreground"/>
+        <TextView
+            android:id="@+id/Description_media_B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/this_option_will_push_only_media_to_cloud"
+            android:paddingStart="15pt"
+            android:paddingEnd="5pt"
+            android:textSize="5pt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingBottom="5pt"
+            android:textColor="@color/foreground"/>
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorPrimaryDark"
+            android:paddingBottom="5pt"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/Super_options"
+            android:text="@string/options_for_super_trigger"
+            android:textSize="10pt"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/info_A"
+            android:textSize="5pt"
+            android:textColor="@color/foreground_faint"
+            />
+        <CheckBox
+            android:id="@+id/contact_S"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/emergency_contacts"
+            android:textSize="8pt"
+            android:padding="5pt"
+            android:checked="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Option1"
+            android:textColor="@color/foreground"/>
+
+        <CheckBox
+            android:id="@+id/local_auth_S"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="5pt"
+            android:paddingEnd="5pt"
+            android:textSize="8pt"
+            android:checked="true"
+            android:text="@string/local_authorities"
+            android:textColor="@color/foreground"/>
+        <CheckBox
+            android:id="@+id/media_push_S"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="8pt"
+            android:padding="5pt"
+            android:checked="true"
+            android:text="@string/push_media_o"
+            android:textColor="@color/foreground" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/E_contact"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10pt"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_limit"
+            android:textColor="@color/foreground_faint"
+            />
+
+
+        <TextView
+            android:id="@+id/ContactList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+        <Button
+            android:id="@+id/AddContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_person_add_black_24dp"
+            android:text="@string/add_contact" />
+
+    </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

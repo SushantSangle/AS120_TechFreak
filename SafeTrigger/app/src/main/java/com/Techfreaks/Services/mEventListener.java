@@ -22,14 +22,16 @@ import com.Techfreaks.utils.SmsListener;
 import com.Techfreaks.utils.SmsReceiver;
 
 import static android.content.ContentValues.TAG;
+import static com.Techfreaks.Services.FiveTapKt.fiveTapReceiver;
+import static com.Techfreaks.Services.ThreeTapKt.threeTapReceiver;
 
 public class mEventListener extends Service {
 
     private static final int NOTIF_ID = 1;
     private static final String NOTIF_CHANNEL_ID = "safeTriggerChannel";
 
-    TriggerReceiver triggerReceiver = new TriggerReceiver(3);
-    TriggerReceiver superTrigger = new TriggerReceiver(5);
+    TriggerReceiver triggerReceiver = threeTapReceiver();
+    TriggerReceiver superTrigger = fiveTapReceiver();
 
     @Override
     @Nullable

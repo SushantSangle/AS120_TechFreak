@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
+
         permissionHandler.checkPermissions(this); //check for all permissions needed by the application
         //The above method does not automatically read the permissions requested in Manifest.
         final Switch MasterSwitch = findViewById(R.id.Master_switch);
@@ -68,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         final CheckBox Contact_B = findViewById(R.id.contact_B);
         final CheckBox Local_B = findViewById(R.id.local_auth_B);
         final CheckBox Local_S = findViewById(R.id.local_auth_S);
-        final CheckBox Media_B = findViewById(R.id.media_push_B);
-        final CheckBox Media_S = findViewById(R.id.media_push_S);
+//        final CheckBox Media_B = findViewById(R.id.media_push_B);
+//        final CheckBox Media_S = findViewById(R.id.media_push_S);
         final CheckBox Contact_S = findViewById(R.id.contact_S);
         final Button AddContact = findViewById(R.id.AddContact);
 
@@ -86,11 +88,11 @@ public class MainActivity extends AppCompatActivity {
 
         Contact_B.setChecked(Contact_BVal);
         Local_B.setChecked(Local_BVal);
-        Media_B.setChecked(Media_BVal);
+//        Media_B.setChecked(Media_BVal);
 
         Contact_S.setChecked(Contact_SVal);
         Local_S.setChecked(Local_SVal);
-        Media_S.setChecked(Media_SVal);
+//        Media_S.setChecked(Media_SVal);
 
         final ScrollView MainScroll = findViewById(R.id.MainScroll);
 
@@ -141,13 +143,13 @@ public class MainActivity extends AppCompatActivity {
                 Local_BVal = isChecked;
             }
         });
-        Media_B.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferencesKt.updateSharedPrefs(getApplicationContext(), "safeTriggerSettings", "Media_BVal", isChecked);
-                Media_BVal = isChecked;
-            }
-        });
+//        Media_B.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                SharedPreferencesKt.updateSharedPrefs(getApplicationContext(), "safeTriggerSettings", "Media_BVal", isChecked);
+//                Media_BVal = isChecked;
+//            }
+//        });
         Contact_S.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -162,13 +164,13 @@ public class MainActivity extends AppCompatActivity {
                 Local_SVal = isChecked;
             }
         });
-        Media_S.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferencesKt.updateSharedPrefs(getApplicationContext(), "safeTriggerSettings", "Media_SVal", isChecked);
-                Media_SVal = isChecked;
-            }
-        });
+//        Media_S.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                SharedPreferencesKt.updateSharedPrefs(getApplicationContext(), "safeTriggerSettings", "Media_SVal", isChecked);
+//                Media_SVal = isChecked;
+//            }
+//        });
 
         AddContact.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -262,24 +264,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     String getContactList(){
-       try {
-           Iterator<String> i = Contacts.iterator();
-           StringBuilder OutputString = new StringBuilder();
-           while (i.hasNext())
-               OutputString.append(i.next()).append("\n");
-           return (OutputString.toString());
-       }catch(NullPointerException e){
-           return ("No contacts added");
-       }
+        try {
+            Iterator<String> i = Contacts.iterator();
+            StringBuilder OutputString = new StringBuilder();
+            while (i.hasNext())
+                OutputString.append(i.next()).append("\n");
+            return (OutputString.toString());
+        }catch(NullPointerException e){
+            return ("No contacts added");
+        }
     }
 
     boolean addContact(String contact){
         if(Contacts == null)    Contacts = new HashSet<>();
         if(Contacts.contains(contact)) return true;
 
-       Contacts.add(contact);
-       SharedPreferencesKt.updateContactList(this,Contacts);
-       return false;
+        Contacts.add(contact);
+        SharedPreferencesKt.updateContactList(this,Contacts);
+        return false;
     }
 
     public void createChannels(){

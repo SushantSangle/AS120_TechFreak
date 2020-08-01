@@ -12,16 +12,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checked="true"
+        android:fontFamily="@font/new_font"
         android:paddingStart="10pt"
-        android:paddingTop="5pt"
+        android:paddingTop="10pt"
         android:paddingEnd="10pt"
-        android:paddingBottom="10pt"
         android:text="@string/master_switch"
         android:textColor="@color/foreground"
         android:textSize="10pt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"   />
+
+
+    <ImageView
+        android:layout_width="450dp"
+        android:layout_height="450dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/blue_logo"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Master_switch" />
+
     <ScrollView
         android:id="@+id/MainScroll"
         android:layout_width="match_parent"
@@ -30,10 +43,13 @@
         app:layout_constraintStart_toStartOf="parent"
         >
     <LinearLayout
+        android:visibility="visible"
+        android:background="@color/whiite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        android:paddingBottom="50dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,13 +58,32 @@
 
 
         <View
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#555"
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorPrimaryDark" />
+ />
 
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:layout_margin="5dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
         <TextView
+            android:fontFamily="@font/new_font"
+            
             android:id="@+id/Option1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,16 +91,27 @@
             android:textSize="10pt"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/Blue_Dress"/>
         <TextView
+            android:fontFamily="@font/new_font"
             android:textSize="5pt"
             android:layout_width="wrap_content"
+            android:paddingTop="5dp"
             android:layout_height="wrap_content"
             android:text="@string/info_B"
             android:textColor="@color/foreground_faint"
             />
 
-        <CheckBox
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#555" />
+
+
+                <CheckBox
             android:id="@+id/contact_B"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,51 +134,84 @@
             android:checked="true"
             android:text="@string/local_authorities"
             android:textColor="@color/foreground"/>
-        <CheckBox
-            android:id="@+id/media_push_B"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="8pt"
-            android:paddingStart="5pt"
-            android:paddingEnd="5pt"
-            android:checked="true"
-            android:text="@string/push_media"
-            android:textColor="@color/foreground"/>
-        <TextView
-            android:id="@+id/Description_media_B"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/this_option_will_push_only_media_to_cloud"
-            android:paddingStart="15pt"
-            android:paddingEnd="5pt"
-            android:textSize="5pt"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:paddingBottom="5pt"
-            android:textColor="@color/foreground"/>
+<!--        <CheckBox-->
+<!--            android:id="@+id/media_push_B"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="8pt"-->
+<!--            android:paddingStart="5pt"-->
+<!--            android:paddingEnd="5pt"-->
+<!--            android:checked="true"-->
+<!--            android:text="@string/push_media"-->
+<!--            android:textColor="@color/foreground"/>-->
+<!--        <TextView-->
+<!--            android:fontFamily="@font/new_font"-->
+<!--            android:id="@+id/Description_media_B"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/this_option_will_push_only_media_to_cloud"-->
+<!--            android:paddingStart="15pt"-->
+<!--            android:paddingEnd="5pt"-->
+<!--            android:textSize="5pt"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            android:paddingBottom="5pt"-->
+<!--            android:textColor="@color/foreground"/>-->
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <View
             android:id="@+id/divider1"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorPrimaryDark"
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#555"
             android:paddingBottom="5pt"/>
+
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:layout_margin="5dp"
+            app:cardElevation="4dp">
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <TextView
+            android:fontFamily="@font/new_font"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/Blue_Dress"
             android:id="@+id/Super_options"
             android:text="@string/options_for_super_trigger"
             android:textSize="10pt"
             />
         <TextView
+            android:fontFamily="@font/new_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/info_A"
             android:textSize="5pt"
+            android:paddingTop="5dp"
             android:textColor="@color/foreground_faint"
             />
-        <CheckBox
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#555" />
+
+            <CheckBox
             android:id="@+id/contact_S"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -154,45 +233,78 @@
             android:checked="true"
             android:text="@string/local_authorities"
             android:textColor="@color/foreground"/>
-        <CheckBox
-            android:id="@+id/media_push_S"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="8pt"
-            android:padding="5pt"
-            android:checked="true"
-            android:text="@string/push_media_o"
-            android:textColor="@color/foreground" />
+<!--        <CheckBox-->
+<!--            android:id="@+id/media_push_S"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="8pt"-->
+<!--            android:padding="5pt"-->
+<!--            android:checked="true"-->
+<!--            android:text="@string/push_media_o"-->
+<!--            android:textColor="@color/foreground" />-->
+
+        </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorPrimaryDark" />
+            android:layout_marginTop="5dp"
+            android:visibility="gone"
+            android:layout_marginBottom="5dp"
+            android:background="#555" />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:layout_margin="5dp"
+            app:cardElevation="4dp">
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <TextView
+            android:fontFamily="@font/new_font"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/E_contact"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/Blue_Dress"
             android:textSize="10pt"
             />
         <TextView
+            android:fontFamily="@font/new_font"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/contact_limit"
+            android:layout_marginBottom="5dp"
             android:textColor="@color/foreground_faint"
             />
 
 
         <TextView
+            android:fontFamily="@font/new_font"
             android:id="@+id/ContactList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="" />
 
+        </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
         <Button
             android:id="@+id/AddContact"
+            android:background="@drawable/buttonredcolorround_blue"
+            android:textColor="@color/whiite"
+            android:textAllCaps="false"
             android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_person_add_black_24dp"
             android:text="@string/add_contact" />

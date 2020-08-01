@@ -1,6 +1,5 @@
 package com.Techfreaks.Services;
 
-import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -77,7 +76,7 @@ public class mEventListener extends Service {
         startForeground(NOTIF_ID, new NotificationCompat.Builder(this,
                 NOTIF_CHANNEL_ID)
                 .setOngoing(true)
-                .setSmallIcon(R.drawable.ic_baseline_announcement_24)
+                .setSmallIcon(R.drawable.logo_bw)
                 .setCategory(NotificationCompat.CATEGORY_SERVICE)
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText("To prevent service from dying in background")
@@ -90,7 +89,7 @@ public class mEventListener extends Service {
         Intent smsIntent = new Intent(mContext,MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getService(mContext,0, smsIntent,0);
         Notification alertSmS = new NotificationCompat.Builder(mContext,"Alert_channel")
-                .setSmallIcon(R.drawable.ic_baseline_announcement_24)
+                .setSmallIcon(R.drawable.logo_bw)
                 .setContentTitle("Alert SOS Received")
                 .setContentText("Please check your SMS application for potential SOS requests.")
                 .build();
@@ -102,13 +101,13 @@ public class mEventListener extends Service {
         Intent notificationIntent = new Intent(mContext, SOS_placeholder.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, notificationIntent,0 );
         Notification cancel_build = new NotificationCompat.Builder(mContext,"safeCheck")
-                .setSmallIcon(R.drawable.common_google_signin_btn_icon_disabled)
+                .setSmallIcon(R.drawable.logo_bw)
                 .setContentTitle("Cancel SOS?")
                 .setVisibility(NotificationCompat.VISIBILITY_SECRET)
                 .setContentText("Press cancel SOS to let people know you are safe")
                 .setContentIntent(pendingIntent).build();
         Notification Cancel_build_private = new NotificationCompat.Builder(mContext,"SafeCheck")
-                .setSmallIcon(R.drawable.ic_baseline_announcement_24)
+                .setSmallIcon(R.drawable.logo_bw)
                 .setContentTitle("Cancel SOS?")
                 .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
                 .setPublicVersion(cancel_build)

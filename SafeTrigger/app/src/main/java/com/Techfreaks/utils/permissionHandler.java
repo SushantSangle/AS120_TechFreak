@@ -17,15 +17,15 @@ public class permissionHandler {
                 Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.READ_CONTACTS,
                 Manifest.permission.CALL_PHONE,
-                Manifest.permission.SEND_SMS,
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                 Manifest.permission.READ_SMS,
-                Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-
+                Manifest.permission.SEND_SMS,
+//                Manifest.permission.READ_EXTERNAL_STORAGE,
+//                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                Manifest.permission.CAMERA,
         };
+
         Boolean flag = false;
         for(String permission : permissions){
             if(ContextCompat.checkSelfPermission(context, permission)==PERMISSION_DENIED)

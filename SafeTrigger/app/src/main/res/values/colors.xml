@@ -2,11 +2,27 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#157DEC</color>
     <color name="bground">#FFFFFF</color>
     <color name="bground_dark">#000000</color>
     <color name="foreground">#000000</color>
     <color name="foreground_faint">#242424</color>
     <color name="foreground_dark_faint">#999999</color>
     <color name="foreground_dark">#FFFFFF</color>
+
+
+    <color name="Blue_Dress">#157DEC</color>
+    <color name="Green_Apple">#4CC417</color>
+    <color name="White">#FFFFFF</color>
+
+    <color name="whiite">#fff</color>
+    <color name="black">#000</color>
+
+    <color name="red">#F80000</color>
+
+
+    <color name="Transparent">#00ffffff</color>
+    <color name="background">#dddddd</color>
+
+
 </resources>

@@ -27,6 +27,9 @@ fun getAllSettings(mContext: Context) :  MutableMap<String, *>? {
 fun getContactList(mContext: Context) : MutableSet<String>? {
     return mContext.getSharedPreferences("safeTriggerSettings", MODE_PRIVATE).getStringSet("Contacts",null)
 }
+fun getCopSOSMode(mContext: Context) : Boolean{
+    return (mContext.getSharedPreferences("safeTriggerSettings", MODE_PRIVATE).getInt("copsos",0)==1)
+}
 
 fun initialSetupNotificationMode(mContext: Context){
     val `in` = Intent()

@@ -30,7 +30,7 @@ public class splash extends AppCompatActivity {
         firebaseUser = firebaseAuth.getCurrentUser();
 
         //Shared preferences for accessing the data stored in storedValuesFile file.
-        sharedPreferences = getApplicationContext().getSharedPreferences("storedValuesFile", 0);
+        sharedPreferences = getApplicationContext().getSharedPreferences("safeTriggerSettings", 0);
 
         //Handler object for delaying the execution.
         Handler handler = new Handler();

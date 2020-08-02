@@ -13,27 +13,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="934bb802-79ba-4967-8852-61f20ccda25a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/firebase/group-index.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/SafeTrigger/SOS_placeholder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/SafeTrigger/SOS_placeholder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/mEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/mEventListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -436,38 +424,38 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="225" height="280" key="Git.Branch.Popup/0.0.1920.1080@0.0.1920.1080" timestamp="1596340278791" />
-    <state width="1874" height="314" key="GridCell.Tab.0.bottom" timestamp="1596387841173">
+    <state width="1874" height="279" key="GridCell.Tab.0.bottom" timestamp="1596403560471">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="314" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1596387841173" />
-    <state width="1874" height="314" key="GridCell.Tab.0.center" timestamp="1596387841173">
+    <state width="1874" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1596403560471" />
+    <state width="1874" height="279" key="GridCell.Tab.0.center" timestamp="1596403560471">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="314" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1596387841173" />
-    <state width="1874" height="314" key="GridCell.Tab.0.left" timestamp="1596387841173">
+    <state width="1874" height="279" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1596403560471" />
+    <state width="1874" height="279" key="GridCell.Tab.0.left" timestamp="1596403560470">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="314" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1596387841173" />
-    <state width="1874" height="314" key="GridCell.Tab.0.right" timestamp="1596387841173">
+    <state width="1874" height="279" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1596403560470" />
+    <state width="1874" height="279" key="GridCell.Tab.0.right" timestamp="1596403560471">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="314" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1596387841173" />
-    <state width="1874" height="279" key="GridCell.Tab.1.bottom" timestamp="1596319852541">
+    <state width="1874" height="279" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1596403560471" />
+    <state width="1874" height="279" key="GridCell.Tab.1.bottom" timestamp="1596403578294">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="279" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1596319852541" />
-    <state width="1874" height="279" key="GridCell.Tab.1.center" timestamp="1596319852541">
+    <state width="1874" height="279" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1596403578294" />
+    <state width="1874" height="279" key="GridCell.Tab.1.center" timestamp="1596403578292">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="279" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1596319852541" />
-    <state width="1874" height="279" key="GridCell.Tab.1.left" timestamp="1596319852541">
+    <state width="1874" height="279" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1596403578292" />
+    <state width="1874" height="279" key="GridCell.Tab.1.left" timestamp="1596403578291">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="279" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1596319852541" />
-    <state width="1874" height="279" key="GridCell.Tab.1.right" timestamp="1596319852541">
+    <state width="1874" height="279" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1596403578291" />
+    <state width="1874" height="279" key="GridCell.Tab.1.right" timestamp="1596403578293">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="279" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1596319852541" />
+    <state width="1874" height="279" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1596403578293" />
     <state x="192" y="126" key="MergeDialog" timestamp="1595826924458">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -488,10 +476,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="0" y="36" width="1052" height="1040" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1595822362089" />
-    <state x="704" y="283" width="697" height="480" key="com.intellij.ide.util.TipDialog" timestamp="1596343634085">
+    <state x="704" y="283" width="697" height="480" key="com.intellij.ide.util.TipDialog" timestamp="1596402960227">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="704" y="283" width="697" height="480" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1596343634085" />
+    <state x="704" y="283" width="697" height="480" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1596402960227" />
     <state x="757" y="493" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596304270205">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -516,5 +504,32 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="690" y="487" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1594922736798" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/mEventListener.java</url>
+          <line>276</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/mEventListener.java</url>
+          <line>254</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/mEventListener.java</url>
+          <line>200</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="app">
+        <watch expression="copSearch" language="JAVA" />
+        <watch expression="copFound" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

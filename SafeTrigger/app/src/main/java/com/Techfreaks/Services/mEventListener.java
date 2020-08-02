@@ -5,8 +5,6 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothHeadset;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -15,9 +13,7 @@ import android.location.Location;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
-import android.os.Looper;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -119,7 +115,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
             if(intent.getBooleanExtra("startSOS",false)){
                 BluetoothHelperKt.stopDiscovery(this);
                 BluetoothHelperKt.stopAdvertising(this);
-                handleLocationRequests(true);
+                handleLocationRequests();
             }
          }catch(Exception e){
              Log.e(TAG, "onStartCommand: "+e.toString());
@@ -200,7 +196,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         }
     }
 
-    private void handleLocationRequests(boolean startSOS){
+    private void handleLocationRequests(){
 
         if(SharedPreferencesKt.getCopSOSMode(this) || MainActivity.copsos){
             saveComplaintToCloud();
@@ -210,7 +206,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
             copFoundID="";
         }
         else copSOS = false;
-        if (startSOS && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             messageHelper.EnableMessage = MainActivity.Contact_SVal;
             handlerThread.start();
             fusedLocationProviderClient.requestLocationUpdates(mLocationRequest,locationCallback,

@@ -196,9 +196,9 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         try {
             if(copSOS) noCopFound();
             handlerThread.quitSafely();
-            fusedLocationProviderClient.removeLocationUpdates(locationCallback);
             messageHelper.firstTime=messageHelper.EnableMessage;
             messageHelper.SendMsg(this,1,2,null);
+            fusedLocationProviderClient.removeLocationUpdates(locationCallback);
         }catch(Exception e){
             Log.e(TAG, "handleLocationRequests: "+e.toString() );
         }
@@ -335,10 +335,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
                     radius++;
                     Toast.makeText(mEventListener.this, "radius: " + radius, Toast.LENGTH_SHORT).show();
 
-                    if (radius > 700) {
-                        noCopFound();
-                    } else {
-
+                    if(radius<50){
                         //If cop not found but radius is less than 10, then search again with the incremented radius.
                         getNearestCop();
                     }
@@ -378,12 +375,12 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         //Removing the current complaint from the ongoing_complaints object of Firebase db.
         try {
             //Stopping the live location updates.
-            fusedLocationProviderClient.removeLocationUpdates(locationCallback);
 
-//            DatabaseReference removeCompDetailsRef = FirebaseDatabase.getInstance().getReference("ongoing_complaints").child(String.valueOf(complaint_id));
-//            removeCompDetailsRef.removeValue();
             databaseReference2 = FirebaseDatabase.getInstance().getReference("ongoing_complaints").child(String.valueOf(complaint_id));
+            databaseReference2.child("citizen_location").child("l").removeValue();
+            databaseReference2.child("citizen_location").removeValue();
             databaseReference2.removeValue();
+
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -5,6 +5,8 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothHeadset;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -101,6 +103,9 @@ public class mEventListener extends Service implements com.google.android.gms.lo
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startID) {
+        BluetoothHelperKt.stopDiscovery(this);
+        BluetoothHelperKt.startDiscovery(this);
+
         fusedLocationProviderClient = getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
             @Override
@@ -126,6 +131,8 @@ public class mEventListener extends Service implements com.google.android.gms.lo
                 stopSelf();
             }
             if(intent.getBooleanExtra("startSOS",false)){
+                BluetoothHelperKt.stopDiscovery(this);
+                BluetoothHelperKt.stopAdvertising(this);
                 handleLocationRequests(true,false);
             }
             if(intent.getBooleanExtra("stopSOS",false)){
@@ -180,11 +187,16 @@ public class mEventListener extends Service implements com.google.android.gms.lo
     public void onLocationChanged(Location location) {
         try {
             if(stopLocationSharing){
+                BluetoothHelperKt.stopAdvertising(this);
+                BluetoothHelperKt.stopDiscovery(this);
+                BluetoothHelperKt.startDiscovery(this);
                 stopLocationSharing=false;
                 stopLocationService();
             }
             Toast.makeText(this,"Current Location :"+location.getLatitude()+" "+location.getLongitude(),Toast.LENGTH_SHORT ).show();
             double a = location.getLongitude();
+
+            BluetoothHelperKt.startAdvertising(this,String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()));
             if(copSOS) copAlert(location);
             messageHelper.firstTime = messageHelper.EnableMessage;
             messageHelper.SendMsg(this, 1, 1, location);

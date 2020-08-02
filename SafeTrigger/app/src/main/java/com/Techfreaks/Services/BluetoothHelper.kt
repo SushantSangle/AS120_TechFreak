@@ -3,6 +3,7 @@ package com.Techfreaks.Services
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
 import com.google.android.gms.nearby.Nearby
 import com.google.android.gms.nearby.connection.*
 import com.google.firebase.auth.FirebaseAuth
@@ -16,10 +17,10 @@ fun startDiscovery(context: Context){
             Log.d(TAG,"Endpoint found : " + info.endpointName)
             val data = info.endpointName.split("---")
             Toast.makeText(context, "userID = ${data[0]} :: co-ordinates = ${data[1]},${data[2]}", Toast.LENGTH_LONG).show()
+//            notification = NotificationCompat.Builder(context,"")
         }
 
         override fun onEndpointLost(p0: String) {
-            TODO("Not yet implemented")
         }
     }
     Nearby.getConnectionsClient(context).startDiscovery(context.packageName, discoveryCallback, discoveryOptions)
@@ -41,15 +42,12 @@ fun startAdvertising(context: Context, latitude : String, longitude: String): Un
     val endpointName = "$currentUser---$latitude---$longitude"
     val advertisingCallback = object : ConnectionLifecycleCallback(){
         override fun onConnectionResult(p0: String, p1: ConnectionResolution) {
-            TODO("Not yet implemented")
         }
 
         override fun onDisconnected(p0: String) {
-            TODO("Not yet implemented")
         }
 
         override fun onConnectionInitiated(p0: String, p1: ConnectionInfo) {
-            TODO("Not yet implemented")
         }
 
     }

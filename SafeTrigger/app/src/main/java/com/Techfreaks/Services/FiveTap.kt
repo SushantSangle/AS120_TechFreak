@@ -14,22 +14,22 @@ import androidx.core.app.NotificationCompat
 import com.Techfreaks.SafeTrigger.R
 import com.Techfreaks.SafeTrigger.TriggerReceiver
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.inappmessaging.CommonTypesProto
 
 
-private val NOTIF_CHANNEL_ID = "safeTriggerChannel"
+private val NOTIF_CHANNEL_ID = ""
 
 
 @RequiresApi(Build.VERSION_CODES.M)
 private fun getLocationAndForward(mContext: Context) {
     val fusedLocationClient = LocationServices.getFusedLocationProviderClient(mContext)
-    cancelNotification(mContext)
+//    cancelNotification(mContext)
     if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         return
     }
     messageHelper.firstTime=true;
     fusedLocationClient.lastLocation
             .addOnSuccessListener { location : Location? ->
-                // Got last known location. In some rare situations this can be null.
                 messageHelper.SendMsg(mContext,1,1,location)
                 if(location==null){
                     messageHelper.SendMsg(mContext,1,1,null)
@@ -39,8 +39,10 @@ private fun getLocationAndForward(mContext: Context) {
 
 private fun cancelNotification(mContext : Context){
     val notificationIntent = Intent(mContext, NotificationHandler::class.java)
+//    val notificationIntent = Intent(mContext,TriggerReceiver::class.java)
+//    notificationIntent.putExtra("StopSOS",true)
     val pendingIntent = PendingIntent.getService(mContext, 0, notificationIntent, 0)
-    val notificationBuild = NotificationCompat.Builder(mContext,NOTIF_CHANNEL_ID)
+    val notificationBuild = NotificationCompat.Builder(mContext,"Cancel_channel")
             .setContentTitle("Cancel SOS ?")
             .setSmallIcon(R.drawable.ic_baseline_announcement_24)
             .setContentText("Press cancel SOS to let people know you are safe.")
@@ -53,8 +55,11 @@ private fun cancelNotification(mContext : Context){
 
 fun fiveTapReceiver(): TriggerReceiver {
     return TriggerReceiver(5) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getLocationAndForward(it)
-        }
+//        getLocationAndForward(it)
+
+        val intent = Intent(it,mEventListener::class.java)
+        intent.putExtra("startSOS",true)
+        it.startService(intent)
+        cancelNotification(it)
     }
 }

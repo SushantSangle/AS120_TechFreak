@@ -2,11 +2,8 @@ package com.Techfreaks.Services;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -14,10 +11,8 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.media.MediaPlayer;
 import android.os.Build;
-import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.support.v4.media.session.PlaybackStateCompat;
 import android.telephony.SmsManager;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
@@ -27,7 +22,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
 
 import java.util.List;
 import java.util.Set;
@@ -35,11 +29,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.Techfreaks.SafeTrigger.R;
-import com.Techfreaks.SafeTrigger.SOS_placeholder;
 import com.Techfreaks.utils.SharedPreferencesKt;
 
 public class messageHelper {
-
+    public static boolean EnableMessage=false;
     final static String TAG = "SmsStatus";
     public static Boolean firstTime;
     public static int msgModeStatic;
@@ -117,8 +110,6 @@ public class messageHelper {
         mContext.registerReceiver(sendSMS,new IntentFilter("SMS_SENT"));
 
         if(mode==2) firstTime=false;
-        if(firstTime)
-            mEventListener.cancelSms(mContext);
         try {
             assert Contacts != null;
             for (String Contact : Contacts) {

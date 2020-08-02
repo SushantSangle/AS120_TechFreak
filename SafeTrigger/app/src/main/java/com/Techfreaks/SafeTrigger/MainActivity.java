@@ -301,8 +301,14 @@ public class MainActivity extends AppCompatActivity {
             channel1.setBypassDnd(true);
             NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             assert nm != null;
+
+            NotificationChannel channel2 = new NotificationChannel("Cancel_channel", "Channel for triggers to cancel generated triggers",NotificationManager.IMPORTANCE_HIGH);
+            channel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PRIVATE);
+
             nm.createNotificationChannel(channel);
             nm.createNotificationChannel(channel1);
+            nm.createNotificationChannel(channel2);
+
         }
 
     }

@@ -15,13 +15,42 @@
       },
       "oauth_client": [
         {
-          "client_id": "130872139919-mbm9mkm9gqsju5nrnha0eb2h5ji365su.apps.googleusercontent.com",
+          "client_id": "130872139919-bgo3qmhn2esrprofi78tki5gv5kbj11m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.Techfreaks.SafeTrigger",
             "certificate_hash": "b1d92938ff325f5245b173769f4e00b19c51a35a"
           }
         },
+        {
+          "client_id": "130872139919-h44e6sqe95eoa6hd4s24mpihc60ekv1s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmLWVGyrhG5cA_vg7cABn4jwaMHI7BP28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130872139919-h44e6sqe95eoa6hd4s24mpihc60ekv1s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130872139919:android:16935b15b5912e7a60d0fa",
+        "android_client_info": {
+          "package_name": "com.techfreaks.safetrigger.coptracking"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "130872139919-h44e6sqe95eoa6hd4s24mpihc60ekv1s.apps.googleusercontent.com",
           "client_type": 3

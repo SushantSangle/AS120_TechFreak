@@ -106,24 +106,10 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         BluetoothHelperKt.stopDiscovery(this);
         BluetoothHelperKt.startDiscovery(this);
 
-        fusedLocationProviderClient = getFusedLocationProviderClient(this);
-        locationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                try {
-                    double longitude = locationResult.getLastLocation().getLongitude();
-                    onLocationChanged(locationResult.getLastLocation());
-                } catch (Exception e) {
-                    Log.e(TAG, "onLocationResult: " + e.toString());
-                }
-            }
-        };
-        mLocationRequest = LocationRequest.create();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(UPDATE_INTERVAL);
-        mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+        initLocationProviders();
         handlerThread = new HandlerThread("HandlerThreadName");
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         try {
             boolean term = intent.getBooleanExtra("TERMINATE", false);
             if (term) {
@@ -133,10 +119,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
             if(intent.getBooleanExtra("startSOS",false)){
                 BluetoothHelperKt.stopDiscovery(this);
                 BluetoothHelperKt.stopAdvertising(this);
-                handleLocationRequests(true,false);
-            }
-            if(intent.getBooleanExtra("stopSOS",false)){
-                handleLocationRequests(false,true);
+                handleLocationRequests(true);
             }
          }catch(Exception e){
              Log.e(TAG, "onStartCommand: "+e.toString());
@@ -188,10 +171,10 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         try {
             if(stopLocationSharing){
                 BluetoothHelperKt.stopAdvertising(this);
-                BluetoothHelperKt.stopDiscovery(this);
                 BluetoothHelperKt.startDiscovery(this);
                 stopLocationSharing=false;
                 stopLocationService();
+                return;
             }
             Toast.makeText(this,"Current Location :"+location.getLatitude()+" "+location.getLongitude(),Toast.LENGTH_SHORT ).show();
             double a = location.getLongitude();
@@ -204,19 +187,20 @@ public class mEventListener extends Service implements com.google.android.gms.lo
             Log.e(TAG, "onLocationChanged: "+e.toString());
         }
     }
+
     private void stopLocationService(){
         try {
+            messageHelper.firstTime=messageHelper.EnableMessage;
+            messageHelper.SendMsg(this,1,2,null);
             if(copSOS) noCopFound();
             handlerThread.quitSafely();
             fusedLocationProviderClient.removeLocationUpdates(locationCallback);
-            messageHelper.firstTime=messageHelper.EnableMessage;
-            messageHelper.SendMsg(this,1,2,null);
         }catch(Exception e){
             Log.e(TAG, "handleLocationRequests: "+e.toString() );
         }
     }
 
-    private void handleLocationRequests(boolean startSOS,boolean stopSOS){
+    private void handleLocationRequests(boolean startSOS){
 
         if(SharedPreferencesKt.getCopSOSMode(this) || MainActivity.copsos){
             saveComplaintToCloud();
@@ -232,16 +216,8 @@ public class mEventListener extends Service implements com.google.android.gms.lo
             fusedLocationProviderClient.requestLocationUpdates(mLocationRequest,locationCallback,
                     handlerThread.getLooper());
         }
-        if(stopSOS){
-            try {
-                Looper.myLooper().quit();
-                fusedLocationProviderClient.removeLocationUpdates(locationCallback);
-            }catch(Exception e){
-                Log.e(TAG, "handleLocationRequests: "+e.toString() );
-            }
-
-        }
     }
+
     private void saveComplaintToCloud() {
 
         //Getting the complaint created date and time
@@ -406,5 +382,27 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         copSearch = false;
         radius = 1;
 
+    }
+
+
+
+    //Code To be Run Every Time the Service starts.
+    private void initLocationProviders(){
+        fusedLocationProviderClient = getFusedLocationProviderClient(this);
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                try {
+                    double longitude = locationResult.getLastLocation().getLongitude();
+                    onLocationChanged(locationResult.getLastLocation());
+                } catch (Exception e) {
+                    Log.e(TAG, "onLocationResult: " + e.toString());
+                }
+            }
+        };
+        mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(UPDATE_INTERVAL);
+        mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
     }
 }

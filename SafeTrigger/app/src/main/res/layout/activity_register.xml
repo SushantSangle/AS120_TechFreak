@@ -31,7 +31,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
         android:padding="15dp"
-        app:cardBackgroundColor="@color/colorAccent"
+        app:cardBackgroundColor="@color/White"
         app:cardCornerRadius="5dp"
         app:cardElevation="12dp"
         app:cardMaxElevation="12dp">
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:background="@color/colorAccent"
+            android:background="@color/White"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -53,12 +53,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="7dp"
-                android:backgroundTint="#FFF"
+                android:backgroundTint="#000"
                 android:ems="10"
                 android:hint="Enter Name"
                 android:inputType="textPersonName"
-                android:textColor="#FFF"
-                android:textColorHint="#FFF"
+                android:textColor="#000"
+                android:textColorHint="#444"
                 android:textSize="16sp" />
 
             <EditText
@@ -70,13 +70,13 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="7dp"
-                android:backgroundTint="#FFF"
+                android:backgroundTint="#000"
                 android:ems="10"
                 android:freezesText="false"
                 android:hint="Enter Email ID"
                 android:inputType="textEmailAddress"
-                android:textColor="#FFF"
-                android:textColorHint="#FFF"
+                android:textColor="#000"
+                android:textColorHint="#444"
                 android:textSize="16sp" />
 
             <EditText
@@ -88,12 +88,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="7dp"
-                android:backgroundTint="#FFF"
+                android:backgroundTint="#000"
                 android:ems="10"
                 android:hint="Enter Password"
                 android:inputType="textPassword"
-                android:textColor="#FFF"
-                android:textColorHint="#FFF"
+                android:textColor="#000"
+                android:textColorHint="#444"
                 android:textSize="16sp" />
 
             <EditText
@@ -105,12 +105,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="7dp"
-                android:backgroundTint="#FFF"
+                android:backgroundTint="#000"
                 android:ems="10"
                 android:hint="Confirm Password"
                 android:inputType="textPersonName|textPassword"
-                android:textColor="#FFF"
-                android:textColorHint="#FFF"
+                android:textColor="#000"
+                android:textColorHint="#444"
                 android:textSize="16sp" />
 
             <EditText
@@ -122,12 +122,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="7dp"
-                android:backgroundTint="#FFF"
+                android:backgroundTint="#000"
                 android:ems="10"
                 android:hint="Enter Phone Number"
                 android:inputType="number"
-                android:textColor="#FFF"
-                android:textColorHint="#FFF"
+                android:textColor="#000"
+                android:textColorHint="#444"
                 android:textSize="16sp" />
 
             <Button

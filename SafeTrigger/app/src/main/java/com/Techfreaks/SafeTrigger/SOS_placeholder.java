@@ -49,11 +49,8 @@ public class SOS_placeholder extends AppCompatActivity implements AdapterView.On
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         Spinner contactList = findViewById(R.id.spinner);
         Set<String> contacts = SharedPreferencesKt.getContactList(this);
-        String contactsUnited="";
         assert contacts != null;
-        for(String contact : contacts){
-            contactsUnited+=contact+",";
-        }
+        String contactsUnited = String.join(",",contacts);
         contactsCurrent = contactsUnited.split(",");
 
         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, contactsCurrent);

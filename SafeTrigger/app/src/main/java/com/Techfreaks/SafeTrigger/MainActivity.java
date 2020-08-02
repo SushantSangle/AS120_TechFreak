@@ -46,7 +46,7 @@ import com.Techfreaks.utils.permissionHandler;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Mobile Data mode" ;
-    public static boolean MasterSwitchVal,Contact_BVal,Local_BVal,Media_BVal,Contact_SVal,Local_SVal,Media_SVal;
+    public static boolean MasterSwitchVal,Contact_BVal,Local_BVal,Media_BVal,Contact_SVal,Local_SVal,Media_SVal,copsos;
     Map<String,?> settings;
     Set<String> Contacts;
     TextView ContactList;
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         final CheckBox Contact_B = findViewById(R.id.contact_B);
         final CheckBox Local_B = findViewById(R.id.local_auth_B);
         final CheckBox Local_S = findViewById(R.id.local_auth_S);
+        final CheckBox copSOS = findViewById(R.id.copSOStrigger);
 //        final CheckBox Media_B = findViewById(R.id.media_push_B);
 //        final CheckBox Media_S = findViewById(R.id.media_push_S);
         final CheckBox Contact_S = findViewById(R.id.contact_S);
@@ -78,14 +79,16 @@ public class MainActivity extends AppCompatActivity {
         ContactList = findViewById(R.id.ContactList);
 
         createChannels();
+
         if(MasterSwitchVal) {
             if (!getMobileDataState()) {
                 setMobileDataState(true);
             }
             startService(new Intent(getApplicationContext(), mEventListener.class));
         }
-        MasterSwitch.setChecked(MasterSwitchVal);
 
+        MasterSwitch.setChecked(MasterSwitchVal);
+        copSOS.setChecked(copsos);
         Contact_B.setChecked(Contact_BVal);
         Local_B.setChecked(Local_BVal);
 //        Media_B.setChecked(Media_BVal);
@@ -127,6 +130,12 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("TERMINATE",true);
                     startService(intent);
                 }
+            }
+        });
+        copSOS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferencesKt.updateSharedPrefs(getApplicationContext(),"safeTriggerSettings","copsos",isChecked);
             }
         });
         Contact_B.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -255,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
             Contact_SVal    = ((Object)1 == settings.get("Contact_SVal"));
             Local_SVal      = ((Object)1 == settings.get("Local_SVal"));
             Media_SVal      = ((Object)1 == settings.get("Media_SVal"));
-
+            copsos          = ((Object)1 == settings.get("copsos"));
             Contacts = SharedPreferencesKt.getContactList(this);
         }catch(NullPointerException e){
             Toast.makeText(this,"No contact Settings found",Toast.LENGTH_SHORT).show();
@@ -301,8 +310,14 @@ public class MainActivity extends AppCompatActivity {
             channel1.setBypassDnd(true);
             NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             assert nm != null;
+
+            NotificationChannel channel2 = new NotificationChannel("Cancel_channel", "Channel for triggers to cancel generated triggers",NotificationManager.IMPORTANCE_HIGH);
+            channel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PRIVATE);
+
             nm.createNotificationChannel(channel);
             nm.createNotificationChannel(channel1);
+            nm.createNotificationChannel(channel2);
+
         }
 
     }

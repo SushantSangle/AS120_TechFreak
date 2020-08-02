@@ -27,11 +27,13 @@ public class NotificationHandler extends Service {
     @Override
     public int onStartCommand(Intent intent,int flags,int startID){
         Log.d(TAG, "onStartCommand: OnStartReached");
-        messageHelper.firstTime=true;
-        messageHelper.SendMsg(this,1,2,null);
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         assert nm != null;
         nm.cancel(420);
+        mEventListener.stopLocationSharing = true;
+//        Intent intent2 = new Intent(this,mEventListener.class);
+//        intent.putExtra("stopSOS",true);
+//        startService(intent2);
         stopSelf();
         return super.onStartCommand(intent,flags,startID);
     }

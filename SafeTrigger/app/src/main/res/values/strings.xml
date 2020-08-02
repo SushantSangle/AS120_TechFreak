@@ -20,4 +20,5 @@
     <string name="channel_description">A constant running service to avoid not registering trigger</string>
     <string name="cancel_channel">Cancel SOS</string>
     <string name="cancel_discription">For a notification that allows you to cancel accidental SOS triggers</string>
+    <string name="notify_nearby_policemen">Notify nearby Policemen</string>
 </resources>

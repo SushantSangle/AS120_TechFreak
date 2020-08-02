@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,11 +15,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class splash extends AppCompatActivity {
 
-    private String assignedCopUid, complaint_id;
     private FirebaseUser firebaseUser;
     private Intent intent;
     private SharedPreferences sharedPreferences;
-    private boolean isReporting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,21 @@ public class splash extends AppCompatActivity {
         firebaseUser = firebaseAuth.getCurrentUser();
 
         //Shared preferences for accessing the data stored in storedValuesFile file.
-        sharedPreferences = getApplicationContext().getSharedPreferences("safeTriggerSettings", 0);
-
+        try {
+            sharedPreferences = getApplicationContext().getSharedPreferences("safeTriggerSettings", 0);
+            if(sharedPreferences.getInt("IntroOpened", 0)==1){
+                introDone();
+            }
+        }catch(Exception e){
+            Log.e("InitError", "onCreate: "+e.toString());
+        }
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("IntroOpened",1);
+        editor.apply();
+        introDone();
+        finish();
+    }
+    private void introDone(){
         //Handler object for delaying the execution.
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -52,38 +64,10 @@ public class splash extends AppCompatActivity {
                 }
 
             }
-        }, 500);  //Execution after 2.5 seconds.
-
+        }, 500);  //Execution after .5 seconds.
     }
-
     //Method to check the user's current activity status.
     private void checkUserComplaintStatus() {
-
-        //Obtaining the complaint id from shared preference file.
-        complaint_id = sharedPreferences.getString("complaint_id", null);
-//        if (complaint_id == null) {
-//
-//            //If no complaint is active, then redirect to Request activity.
-//
-//        } else {
-//
-//            //Checking if the user has reported the complaint.
-//            isReporting = sharedPreferences.getBoolean("isReporting", false);
-//            if (isReporting) {
-//
-//                //If user has reported the ongoing complaint, then redirect to LocatingPoliceStation activity.
-//                intent = new Intent(splash.this, LocatingPoliceStation.class);
-//                intent.putExtra("complaint_id", complaint_id);
-//                intent.putExtra("isAlreadySearching", true);
-//            } else {
-//
-//                //If user has a complaint ongoing and not reported, then redirect to mapActivity activity.
-//                assignedCopUid = sharedPreferences.getString("assignedCopUid", null);
-//                intent = new Intent(splash.this, mapActivity.class);
-//                intent.putExtra("assignedCopID", assignedCopUid);
-//                intent.putExtra("complaint_id", complaint_id);
-//            }
-//        }
         intent = new Intent(splash.this, MainActivity.class);
 
         //Starting the assigned activity.

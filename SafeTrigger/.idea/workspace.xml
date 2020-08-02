@@ -12,6 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="934bb802-79ba-4967-8852-61f20ccda25a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__pl_droidsonroids_gif_android_gif_drawable_1_2_19_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__pl_droidsonroids_relinker_1_3_1_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -23,13 +25,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/SafeTrigger/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/SafeTrigger/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/SafeTrigger/splash.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/SafeTrigger/splash.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/mEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/mEventListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/utils/SharedPreferences.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/utils/SharedPreferences.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/messageHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/messageHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +62,8 @@
       <list>
         <option value="resourceFile" />
         <option value="Class" />
-        <option value="Interface" />
         <option value="valueResourceFile" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -104,7 +108,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="master" />
+        <entry key="$PROJECT_DIR$/.." value="initScreen" />
         <entry key="$PROJECT_DIR$" value="release-2020.07.26" />
       </map>
     </option>
@@ -140,7 +144,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="copSoS" />
-                    <option name="lastUsedInstant" value="1596304979" />
+                    <option name="lastUsedInstant" value="1596340279" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="initScreen" />
+                    <option name="lastUsedInstant" value="1596339445" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
@@ -170,7 +178,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.recentlyUsedThemes" value="android:Theme.Material" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AndroidStudioProjects/IntroScreen-master" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AndroidStudioProjects/IntroScreen.zip" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -210,6 +218,12 @@
       <recent name="$PROJECT_DIR$/app/src/main/res/font" />
     </key>
     <key name="android.template.2084410778">
+      <recent name="com.Techfreaks.SafeTrigger" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.Techfreaks.SafeTrigger" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.Techfreaks.SafeTrigger" />
     </key>
   </component>
@@ -411,30 +425,30 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="600" y="149" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1596283450011" />
-    <state x="748" y="331" key="FileChooserDialogImpl" timestamp="1596337497498">
+    <state x="748" y="331" key="FileChooserDialogImpl" timestamp="1596338927351">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="748" y="331" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1596337497498" />
-    <state width="223" height="278" key="Git.Branch.Popup" timestamp="1596337052951">
+    <state x="748" y="331" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1596338927351" />
+    <state width="225" height="280" key="Git.Branch.Popup" timestamp="1596340278791">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="223" height="278" key="Git.Branch.Popup/0.0.1920.1080@0.0.1920.1080" timestamp="1596337052951" />
-    <state width="1874" height="394" key="GridCell.Tab.0.bottom" timestamp="1596335293724">
+    <state width="225" height="280" key="Git.Branch.Popup/0.0.1920.1080@0.0.1920.1080" timestamp="1596340278791" />
+    <state width="1874" height="393" key="GridCell.Tab.0.bottom" timestamp="1596343072196">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="394" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1596335293724" />
-    <state width="1874" height="394" key="GridCell.Tab.0.center" timestamp="1596335293724">
+    <state width="1874" height="393" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1596343072196" />
+    <state width="1874" height="393" key="GridCell.Tab.0.center" timestamp="1596343072195">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="394" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1596335293724" />
-    <state width="1874" height="394" key="GridCell.Tab.0.left" timestamp="1596335293723">
+    <state width="1874" height="393" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1596343072195" />
+    <state width="1874" height="393" key="GridCell.Tab.0.left" timestamp="1596343072195">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="394" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1596335293723" />
-    <state width="1874" height="394" key="GridCell.Tab.0.right" timestamp="1596335293724">
+    <state width="1874" height="393" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1596343072195" />
+    <state width="1874" height="393" key="GridCell.Tab.0.right" timestamp="1596343072195">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="394" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1596335293724" />
+    <state width="1874" height="393" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1596343072195" />
     <state width="1874" height="279" key="GridCell.Tab.1.bottom" timestamp="1596319852541">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -471,10 +485,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="0" y="36" width="1052" height="1040" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1595822362089" />
-    <state x="704" y="283" width="697" height="480" key="com.intellij.ide.util.TipDialog" timestamp="1596329167797">
+    <state x="704" y="283" width="697" height="480" key="com.intellij.ide.util.TipDialog" timestamp="1596343634085">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="704" y="283" width="697" height="480" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1596329167797" />
+    <state x="704" y="283" width="697" height="480" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1596343634085" />
     <state x="757" y="493" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596304270205">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

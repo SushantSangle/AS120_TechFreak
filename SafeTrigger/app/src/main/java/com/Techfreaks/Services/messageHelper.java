@@ -32,7 +32,7 @@ import com.Techfreaks.SafeTrigger.R;
 import com.Techfreaks.utils.SharedPreferencesKt;
 
 public class messageHelper {
-    public static boolean EnableMessage=false;
+    public static boolean EnableMessage=true;
     final static String TAG = "SmsStatus";
     public static Boolean firstTime;
     public static int msgModeStatic;

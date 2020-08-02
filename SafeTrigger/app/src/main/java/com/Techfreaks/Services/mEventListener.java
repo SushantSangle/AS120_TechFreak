@@ -212,6 +212,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         }
         else copSOS = false;
         if (startSOS && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            messageHelper.EnableMessage = MainActivity.Contact_SVal;
             handlerThread.start();
             fusedLocationProviderClient.requestLocationUpdates(mLocationRequest,locationCallback,
                     handlerThread.getLooper());
@@ -369,7 +370,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
             e.printStackTrace();
             Log.e("geo listen", String.valueOf(e));
         }
-
+        geoQuery.removeAllListeners();
 
         //Removing the current complaint from the ongoing_complaints object of Firebase db.
         try {

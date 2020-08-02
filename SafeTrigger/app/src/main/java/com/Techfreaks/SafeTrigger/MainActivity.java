@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
             Contact_SVal    = ((Object)1 == settings.get("Contact_SVal"));
             Local_SVal      = ((Object)1 == settings.get("Local_SVal"));
             Media_SVal      = ((Object)1 == settings.get("Media_SVal"));
-            copsos          = ((Object)1 == settings.get("copSOS"));
+            copsos          = ((Object)1 == settings.get("copsos"));
             Contacts = SharedPreferencesKt.getContactList(this);
         }catch(NullPointerException e){
             Toast.makeText(this,"No contact Settings found",Toast.LENGTH_SHORT).show();

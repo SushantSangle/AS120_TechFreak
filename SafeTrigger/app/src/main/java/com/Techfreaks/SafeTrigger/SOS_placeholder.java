@@ -34,8 +34,13 @@ public class SOS_placeholder extends AppCompatActivity implements AdapterView.On
     @RequiresApi(api = Build.VERSION_CODES.O_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.setShowWhenLocked(true);
-        this.setTurnScreenOn(true);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.setShowWhenLocked(true);
+            this.setTurnScreenOn(true);
+        }
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_s_o_s_placeholder);
 
@@ -44,8 +49,11 @@ public class SOS_placeholder extends AppCompatActivity implements AdapterView.On
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         Spinner contactList = findViewById(R.id.spinner);
         Set<String> contacts = SharedPreferencesKt.getContactList(this);
+        String contactsUnited="";
         assert contacts != null;
-        String contactsUnited = String.join(",",contacts);
+        for(String contact : contacts){
+            contactsUnited+=contact+",";
+        }
         contactsCurrent = contactsUnited.split(",");
 
         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, contactsCurrent);

@@ -96,6 +96,11 @@ public class mEventListener extends Service implements com.google.android.gms.lo
                 messageHelper.parseInputMsg(messageText, getApplicationContext());
             }
         });
+
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startID) {
         fusedLocationProviderClient = getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
             @Override
@@ -114,10 +119,6 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
         handlerThread = new HandlerThread("HandlerThreadName");
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startID) {
         try {
             boolean term = intent.getBooleanExtra("TERMINATE", false);
             if (term) {
@@ -196,6 +197,8 @@ public class mEventListener extends Service implements com.google.android.gms.lo
             if(copSOS) noCopFound();
             handlerThread.quitSafely();
             fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+            messageHelper.firstTime=messageHelper.EnableMessage;
+            messageHelper.SendMsg(this,1,2,null);
         }catch(Exception e){
             Log.e(TAG, "handleLocationRequests: "+e.toString() );
         }

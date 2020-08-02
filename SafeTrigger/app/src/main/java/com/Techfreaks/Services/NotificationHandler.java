@@ -27,8 +27,6 @@ public class NotificationHandler extends Service {
     @Override
     public int onStartCommand(Intent intent,int flags,int startID){
         Log.d(TAG, "onStartCommand: OnStartReached");
-        messageHelper.firstTime=messageHelper.EnableMessage;
-        messageHelper.SendMsg(this,1,2,null);
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         assert nm != null;
         nm.cancel(420);

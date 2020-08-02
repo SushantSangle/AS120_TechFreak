@@ -61,6 +61,7 @@ dependencies {
 //    implementation 'com.google.firebase:firebase-perf:19.0.8'
     implementation 'com.firebase:geofire-android:3.0.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+    implementation 'com.google.android.gms:play-services-nearby:17.0.0'
 
 }
 repositories {

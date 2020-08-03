@@ -27,19 +27,6 @@ public class splash extends AppCompatActivity {
         //Getting the current Firebase user from FirebaseAuth service.
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-
-        //Shared preferences for accessing the data stored in storedValuesFile file.
-        try {
-            sharedPreferences = getApplicationContext().getSharedPreferences("safeTriggerSettings", 0);
-            if(sharedPreferences.getInt("IntroOpened", 0)==1){
-                introDone();
-            }
-        }catch(Exception e){
-            Log.e("InitError", "onCreate: "+e.toString());
-        }
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("IntroOpened",1);
-        editor.apply();
         introDone();
         finish();
     }

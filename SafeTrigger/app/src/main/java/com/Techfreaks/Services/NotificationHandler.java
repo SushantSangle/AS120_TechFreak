@@ -30,6 +30,7 @@ public class NotificationHandler extends Service {
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         assert nm != null;
         nm.cancel(420);
+        BluetoothHelperKt.stopAdvertising(this);
         mEventListener.stopLocationSharing = true;
 //        Intent intent2 = new Intent(this,mEventListener.class);
 //        intent.putExtra("stopSOS",true);

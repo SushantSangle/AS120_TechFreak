@@ -5,11 +5,14 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.bluetooth.BluetoothHeadset;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -26,6 +29,7 @@ import com.Techfreaks.SafeTrigger.TriggerReceiver;
 import com.Techfreaks.utils.SharedPreferencesKt;
 import com.Techfreaks.utils.SmsListener;
 import com.Techfreaks.utils.SmsReceiver;
+import com.Techfreaks.utils.TriggerHelperKt;
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.firebase.geofire.GeoQuery;
@@ -67,7 +71,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
     boolean locationSet = false;
     private DatabaseReference databaseReference;
     private DatabaseReference databaseReference2;
-    private Boolean cancelRequest = false, copSearch=true;
+    private boolean copSearch=true;
 
     private TriggerReceiver triggerReceiver = threeTapReceiver();
     private TriggerReceiver superTrigger = fiveTapReceiver();
@@ -79,6 +83,14 @@ public class mEventListener extends Service implements com.google.android.gms.lo
     private HandlerThread handlerThread;
     Location mLastLocation;
     private boolean copSOS;
+    private static boolean networkState;
+    private boolean owner=false;
+    private String ownerUid;
+    private double ownerLat;
+    private double ownerLong;
+    private String chainUsers;
+    double latitude,longitude;
+    String citizenID,complaint_ID;
 
     @Override
     @Nullable
@@ -99,27 +111,13 @@ public class mEventListener extends Service implements com.google.android.gms.lo
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startID) {
-        BluetoothHelperKt.stopDiscovery(this);
-        BluetoothHelperKt.startDiscovery(this);
+        BluetoothHelperKt.stopAdvertising(this);
+        BluetoothHelperKt.restartDiscovery(this);
 
-        initLocationProviders();
         handlerThread = new HandlerThread("HandlerThreadName");
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        try {
-            boolean term = intent.getBooleanExtra("TERMINATE", false);
-            if (term) {
-                stopForeground(true);
-                stopSelf();
-            }
-            if(intent.getBooleanExtra("startSOS",false)){
-                BluetoothHelperKt.stopDiscovery(this);
-                BluetoothHelperKt.stopAdvertising(this);
-                handleLocationRequests();
-            }
-         }catch(Exception e){
-             Log.e(TAG, "onStartCommand: "+e.toString());
-         }
+        handleIntentCalls(intent);
         startForeground();
         return super.onStartCommand(intent,flags,startID);
     }
@@ -167,15 +165,16 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         try {
             if(stopLocationSharing){
                 BluetoothHelperKt.stopAdvertising(this);
-                BluetoothHelperKt.startDiscovery(this);
+                BluetoothHelperKt.restartDiscovery(this);
                 stopLocationSharing=false;
                 stopLocationService();
+                owner=false;
                 return;
             }
             Toast.makeText(this,"Current Location :"+location.getLatitude()+" "+location.getLongitude(),Toast.LENGTH_SHORT ).show();
             double a = location.getLongitude();
 
-            BluetoothHelperKt.startAdvertising(this,String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()));
+            if(!networkState) BluetoothHelperKt.restartAdvertising(this,String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()),true,"0");
             if(copSOS) copAlert(location);
             messageHelper.firstTime = messageHelper.EnableMessage;
             messageHelper.SendMsg(this, 1, 1, location);
@@ -196,23 +195,6 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         }
     }
 
-    private void handleLocationRequests(){
-
-        if(SharedPreferencesKt.getCopSOSMode(this) || MainActivity.copsos){
-            saveComplaintToCloud();
-            copSOS = true;
-            copFound=false;
-            copSearch=true;
-            copFoundID="";
-        }
-        else copSOS = false;
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            messageHelper.EnableMessage = MainActivity.Contact_SVal;
-            handlerThread.start();
-            fusedLocationProviderClient.requestLocationUpdates(mLocationRequest,locationCallback,
-                    handlerThread.getLooper());
-        }
-    }
 
     private void saveComplaintToCloud() {
 
@@ -228,11 +210,21 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         complaint_id = random.nextInt(900000) + 100000;
 
         //Uploading the complaint details to Firebase db.
-        databaseReference2 = FirebaseDatabase.getInstance().getReference("ongoing_complaints").child(String.valueOf(complaint_id));
-        databaseReference2.child("complaint_id").setValue(complaint_id);
-        databaseReference2.child("Citizen_uid").setValue(uid);
-        databaseReference2.child("complaint_create_date").setValue(currDate);
-        databaseReference2.child("complaint_create_time").setValue(currTime);
+        if (owner) {
+            databaseReference2 = FirebaseDatabase.getInstance().getReference("ongoing_complaints").child(String.valueOf(complaint_id));
+            databaseReference2.child("complaint_id").setValue(complaint_id);
+            databaseReference2.child("Citizen_uid").setValue(uid);
+            databaseReference2.child("complaint_create_date").setValue(currDate);
+            databaseReference2.child("complaint_create_time").setValue(currTime);
+        }else{
+            databaseReference2 = FirebaseDatabase.getInstance().getReference("ongoing_complaints").child(ownerUid);
+            databaseReference2.child("complaint_id").setValue(ownerUid);
+            databaseReference2.child("Citizen_uid").setValue(ownerUid);
+            databaseReference2.child("Triggering_Citizen").setValue(uid);
+            databaseReference2.child("Chain_of_users").setValue(chainUsers);
+            databaseReference2.child("complaint_create_date").setValue(currDate);
+            databaseReference2.child("complaint_create_time").setValue(currTime);
+        }
     }
     private void copAlert(Location location){
         Log.d("onchanged/////////////", String.valueOf(location));
@@ -249,9 +241,30 @@ public class mEventListener extends Service implements com.google.android.gms.lo
             databaseReference2.child("complaint_create_loc_lng").setValue(location.getLongitude());
             getNearestCop();
         }
+    }
+    private void copAlertChain(){
+        Log.d("ChainLocation:////////",ownerLat+","+ownerLong);
+        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("Ongoing_complaints")
+                .child(ownerUid);
+        geoFire = new GeoFire(databaseReference1);
+        geoFire.setLocation("citizen_location",new GeoLocation(ownerLat,ownerLong));
+        databaseReference2.child("complaint_create_loc_lat").setValue(ownerLong);
+        databaseReference2.child("complaint_create_loc_lng").setValue(ownerLong);
+        getNearestCop();
 
     }
     public void getNearestCop() {
+        if(owner){
+            citizenID=uid;
+            complaint_ID=String.valueOf(complaint_id);
+            latitude=mLastLocation.getLatitude();
+            longitude=mLastLocation.getLongitude();
+        }else{
+            citizenID=ownerUid;
+            complaint_ID=ownerUid;
+            latitude=ownerLat;
+            longitude=ownerLong;
+        }
         if(copFound){
             DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("ongoing_complaints")
                     .child(String.valueOf(complaint_id));
@@ -264,7 +277,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
 
         //Using GeoFire.queryAtLocation method for searching for nearest cop by incrementing the radius every time.
         GeoFire geoFire = new GeoFire(databaseReference);
-        geoQuery = geoFire.queryAtLocation(new GeoLocation(mLastLocation.getLatitude(), mLastLocation.getLongitude()), radius);
+        geoQuery = geoFire.queryAtLocation(new GeoLocation(latitude, longitude), radius);
 
         //Removing previous listeners.
         geoQuery.removeAllListeners();
@@ -285,15 +298,15 @@ public class mEventListener extends Service implements com.google.android.gms.lo
                     //Adding the citizen id and complaint id to cop object in Firebase db.
                     DatabaseReference copReference = FirebaseDatabase.getInstance().getReference().child("actors").child("cops").child(copFoundID);
                     HashMap map = new HashMap();
-                    map.put("citizenID", uid);
-                    map.put("complaint_id", complaint_id);
+                    map.put("citizenID", citizenID);
+                    map.put("complaint_id", complaint_ID);
                     copReference.updateChildren(map);
 
                     //Adding the cop id and complaint id to the assigned object in Firebase db.
-                    DatabaseReference citizenReference = FirebaseDatabase.getInstance().getReference().child("actors").child("citizens").child(uid);
+                    DatabaseReference citizenReference = FirebaseDatabase.getInstance().getReference().child("actors").child("citizens").child(citizenID);
                     HashMap map1 = new HashMap();
                     map1.put("assigned_cop_id", copFoundID);
-                    map1.put("complaint_id", complaint_id);
+                    map1.put("complaint_id", complaint_ID);
                     citizenReference.updateChildren(map1);
                 }
             }
@@ -317,7 +330,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
 
                     //Incrementing the radius by 1 km.
                     radius++;
-                    Toast.makeText(mEventListener.this, "radius: " + radius, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mEventListener.this, "radius: " + radius, Toast.LENGTH_SHORT).show();
 
                     if (radius > 700) {
                         noCopFound();
@@ -366,7 +379,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
 
 //            DatabaseReference removeCompDetailsRef = FirebaseDatabase.getInstance().getReference("ongoing_complaints").child(String.valueOf(complaint_id));
 //            removeCompDetailsRef.removeValue();
-            databaseReference2 = FirebaseDatabase.getInstance().getReference("ongoing_complaints").child(String.valueOf(complaint_id));
+            databaseReference2 = FirebaseDatabase.getInstance().getReference("ongoing_complaints").child(String.valueOf(owner?complaint_id:ownerUid));
             databaseReference2.removeValue();
 
         } catch (Exception e) {
@@ -381,7 +394,9 @@ public class mEventListener extends Service implements com.google.android.gms.lo
     }
 
 
-
+    /*
+    Utility functions essentially written to clear up the mess up above
+    */
     //Code To be Run Every Time the Service starts.
     private void initLocationProviders(){
         fusedLocationProviderClient = getFusedLocationProviderClient(this);
@@ -400,5 +415,84 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(UPDATE_INTERVAL);
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+    }
+    private void getNetworkState(Context context) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        try {
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            networkState = (activeNetworkInfo != null && activeNetworkInfo.isConnected());
+        }catch(Exception e){
+            networkState = false;
+        }
+    }
+    private void handleIntentCalls(Intent intent){
+        try {
+            boolean term = intent.getBooleanExtra("TERMINATE", false);
+            if (term) {
+                stopForeground(true);
+                stopSelf();
+            }
+            if(intent.getBooleanExtra("startSOS",false)){
+                initLocationProviders();
+                getNetworkState(this);
+                owner=true;
+                if(!networkState) {
+                    BluetoothHelperKt.stopDiscovery(this);
+                    BluetoothHelperKt.stopAdvertising(this);
+                }
+                handleLocationRequests();
+            }
+            if(intent.getBooleanExtra("chainSOS",false)){
+                String chain=intent.getStringExtra("chain");
+                String[] data= chain.split("---",4);
+                ownerUid=data[0];
+                ownerLat=Float.parseFloat(data[1]);
+                ownerLong=Float.parseFloat(data[2]);
+                try{
+                    chainUsers=data[3];
+                }catch(Exception e){
+                    chainUsers="";
+                }
+                getNetworkState(this);
+                if(!networkState)
+                {
+                    BluetoothHelperKt.stopDiscovery(this);
+                    BluetoothHelperKt.stopAdvertising(this);
+                    BluetoothHelperKt.startAdvertising(this,String.valueOf(ownerLat),String.valueOf(ownerLong),false,chain);
+                }
+                chainTrigger();
+            }
+        }catch(Exception e){
+            Log.e(TAG, "onStartCommand: "+e.toString());
+        }
+    }
+    public void chainTrigger(){
+        copSOS = true;
+        copFound=false;
+        copSearch=true;
+        copFoundID="";
+        locationSet=false;
+        saveComplaintToCloud();
+        copAlertChain();
+        getNearestCop();
+    }
+    private void handleLocationRequests(){
+
+        if(SharedPreferencesKt.getCopSOSMode(this) || MainActivity.copsos){
+            saveComplaintToCloud();
+            copSOS = true;
+            copFound=false;
+            copSearch=true;
+            copFoundID="";
+            locationSet=false;
+        }
+        else copSOS = false;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            messageHelper.EnableMessage = MainActivity.Contact_SVal;
+            handlerThread.start();
+            fusedLocationProviderClient.requestLocationUpdates(mLocationRequest,locationCallback,
+                    handlerThread.getLooper());
+        }
     }
 }

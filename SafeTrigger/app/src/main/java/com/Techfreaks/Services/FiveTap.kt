@@ -12,6 +12,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import com.Techfreaks.SafeTrigger.R
+import com.Techfreaks.SafeTrigger.SOS_placeholder
 import com.Techfreaks.SafeTrigger.TriggerReceiver
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.inappmessaging.CommonTypesProto
@@ -56,7 +57,6 @@ private fun cancelNotification(mContext : Context){
 fun fiveTapReceiver(): TriggerReceiver {
     return TriggerReceiver(5) {
 //        getLocationAndForward(it)
-
         val intent = Intent(it,mEventListener::class.java)
         intent.putExtra("startSOS",true)
         it.startService(intent)

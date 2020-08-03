@@ -30,11 +30,12 @@ public class SOS_placeholder extends AppCompatActivity implements AdapterView.On
 
     private static String selectedContact;
     private String[] contactsCurrent;
+    public static SOS_placeholder activity;
 
     @RequiresApi(api = Build.VERSION_CODES.O_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        activity = this;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             this.setShowWhenLocked(true);
             this.setTurnScreenOn(true);

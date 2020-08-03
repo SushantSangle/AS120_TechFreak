@@ -1,6 +1,8 @@
 package com.Techfreaks.Services
 
 import android.content.Context
+import android.content.Intent
+import android.text.BoringLayout
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
@@ -17,7 +19,11 @@ fun startDiscovery(context: Context){
             Log.d(TAG,"Endpoint found : " + info.endpointName)
             val data = info.endpointName.split("---")
             Toast.makeText(context, "userID = ${data[0]} :: co-ordinates = ${data[1]},${data[2]}", Toast.LENGTH_LONG).show()
-//            notification = NotificationCompat.Builder(context,"")
+            val intent = Intent(context,mEventListener::class.java)
+            intent.putExtra("chainSOS",true)
+            intent.putExtra("chain",info.endpointName)
+            context.startService(intent)
+
         }
 
         override fun onEndpointLost(p0: String) {
@@ -36,10 +42,21 @@ fun stopDiscovery(context: Context){
     Nearby.getConnectionsClient(context).stopDiscovery()
 }
 
-fun startAdvertising(context: Context, latitude : String, longitude: String): Unit {
+fun startAdvertising(context: Context, latitude : String, longitude: String,owner:Boolean,privSOS:String?): Unit {
     val advertisingOptions = AdvertisingOptions.Builder().setStrategy(Strategy.P2P_CLUSTER).build()
     val currentUser = FirebaseAuth.getInstance().currentUser?.uid
-    val endpointName = "$currentUser---$latitude---$longitude"
+    lateinit var endpointName : String
+    if(owner)
+        endpointName = "$currentUser---$latitude---$longitude"
+    else {
+        if(privSOS?.split("---")?.size!! <5)
+            endpointName = "$privSOS---$currentUser"
+        else{
+            stopAdvertising(context)
+            startDiscovery(context)
+            return;
+        }
+    }
     val advertisingCallback = object : ConnectionLifecycleCallback(){
         override fun onConnectionResult(p0: String, p1: ConnectionResolution) {
         }
@@ -62,4 +79,13 @@ fun startAdvertising(context: Context, latitude : String, longitude: String): Un
 
 fun stopAdvertising(context: Context){
     Nearby.getConnectionsClient(context).stopAdvertising()
+}
+
+fun restartDiscovery(context: Context){
+    stopDiscovery(context)
+    startDiscovery(context)
+}
+fun restartAdvertising(context : Context,latitude:String,longitude:String,owner:Boolean,privSOS:String){
+    stopAdvertising(context)
+    startAdvertising(context,latitude,longitude,owner,null)
 }

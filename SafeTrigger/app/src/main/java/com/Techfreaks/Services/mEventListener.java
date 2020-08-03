@@ -38,6 +38,9 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -64,14 +67,14 @@ public class mEventListener extends Service implements com.google.android.gms.lo
     private long FASTEST_INTERVAL = 5000;
     private int REQUEST_FINE_LOCATION = 99;
     private String uid, copFoundID = "";
-    private boolean copFound=false;
+    private boolean copFound = false;
     private GeoQuery geoQuery;
     private GeoFire geoFire;
     private int radius = 1, complaint_id;
     boolean locationSet = false;
     private DatabaseReference databaseReference;
     private DatabaseReference databaseReference2;
-    private boolean copSearch=true;
+    private boolean copSearch = true;
 
     private TriggerReceiver triggerReceiver = threeTapReceiver();
     private TriggerReceiver superTrigger = fiveTapReceiver();
@@ -84,13 +87,13 @@ public class mEventListener extends Service implements com.google.android.gms.lo
     Location mLastLocation;
     private boolean copSOS;
     private static boolean networkState;
-    private boolean owner=false;
+    private boolean owner = false;
     private String ownerUid;
     private double ownerLat;
     private double ownerLong;
     private String chainUsers;
-    double latitude,longitude;
-    String citizenID,complaint_ID;
+    double latitude, longitude;
+    String citizenID, complaint_ID;
 
     @Override
     @Nullable
@@ -119,10 +122,16 @@ public class mEventListener extends Service implements com.google.android.gms.lo
 
         handleIntentCalls(intent);
         startForeground();
-        return super.onStartCommand(intent,flags,startID);
+        return super.onStartCommand(intent, flags, startID);
     }
-    
-    private void startForeground(){
+
+    private void startForeground() {
+        try {
+            unregisterReceiver(triggerReceiver);
+            unregisterReceiver(superTrigger);
+        } catch (Exception e) {
+            Log.e(TAG, "startForeground: Starting Trigger Receiver for the first time");
+        }
         registerReceiver(triggerReceiver, new IntentFilter(Intent.ACTION_SCREEN_ON));
         registerReceiver(triggerReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
         registerReceiver(superTrigger, new IntentFilter(Intent.ACTION_SCREEN_ON));
@@ -130,7 +139,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
 
         Intent notificationIntent = new Intent(this, com.Techfreaks.SafeTrigger.SOS_placeholder.class);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 , notificationIntent,0 );
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
         startForeground(NOTIF_ID, new NotificationCompat.Builder(this,
                 NOTIF_CHANNEL_ID)
@@ -144,54 +153,55 @@ public class mEventListener extends Service implements com.google.android.gms.lo
                 .build());
     }
 
-    public static void alertSmS(Context mContext){
+    public static void alertSmS(Context mContext) {
         Intent smsIntent = new Intent(Intent.ACTION_MAIN);
         smsIntent.addCategory(Intent.CATEGORY_DEFAULT);
         smsIntent.setType("vnd.android-dir/mms-sms");
-        PendingIntent pendingIntent = PendingIntent.getService(mContext,0, smsIntent,0);
-        Notification alertSmS = new NotificationCompat.Builder(mContext,"Alert_channel")
+        PendingIntent pendingIntent = PendingIntent.getService(mContext, 0, smsIntent, 0);
+        Notification alertSmS = new NotificationCompat.Builder(mContext, "Alert_channel")
                 .setSmallIcon(R.drawable.logo_bw)
                 .setContentTitle("Alert SOS Received")
                 .setContentText("Please check your SMS application for potential SOS requests.")
                 .setContentIntent(pendingIntent)
                 .build();
         NotificationManager nm = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        assert nm!=null;
-        nm.notify(69,alertSmS);
+        assert nm != null;
+        nm.notify(69, alertSmS);
     }
 
     @Override
     public void onLocationChanged(Location location) {
         try {
-            if(stopLocationSharing){
+            if (stopLocationSharing) {
                 BluetoothHelperKt.stopAdvertising(this);
                 BluetoothHelperKt.restartDiscovery(this);
-                stopLocationSharing=false;
+                stopLocationSharing = false;
                 stopLocationService();
-                owner=false;
+                owner = false;
                 return;
             }
-            Toast.makeText(this,"Current Location :"+location.getLatitude()+" "+location.getLongitude(),Toast.LENGTH_SHORT ).show();
+            Toast.makeText(this, "Current Location :" + location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
             double a = location.getLongitude();
 
-            if(!networkState) BluetoothHelperKt.restartAdvertising(this,String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()),true,"0");
-            if(copSOS) copAlert(location);
+            if (!networkState)
+                BluetoothHelperKt.restartAdvertising(this, String.valueOf(location.getLatitude()), String.valueOf(location.getLongitude()), true, "0");
+            if (copSOS) copAlert(location);
             messageHelper.firstTime = messageHelper.EnableMessage;
             messageHelper.SendMsg(this, 1, 1, location);
-        }catch(Exception e){
-            Log.e(TAG, "onLocationChanged: "+e.toString());
+        } catch (Exception e) {
+            Log.e(TAG, "onLocationChanged: " + e.toString());
         }
     }
 
-    private void stopLocationService(){
+    private void stopLocationService() {
         try {
-            messageHelper.firstTime=messageHelper.EnableMessage;
-            messageHelper.SendMsg(this,1,2,null);
-            if(copSOS) noCopFound();
+            messageHelper.firstTime = messageHelper.EnableMessage;
+            messageHelper.SendMsg(this, 1, 2, null);
+            if (copSOS) noCopFound();
             handlerThread.quitSafely();
             fusedLocationProviderClient.removeLocationUpdates(locationCallback);
-        }catch(Exception e){
-            Log.e(TAG, "handleLocationRequests: "+e.toString() );
+        } catch (Exception e) {
+            Log.e(TAG, "handleLocationRequests: " + e.toString());
         }
     }
 
@@ -216,7 +226,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
             databaseReference2.child("Citizen_uid").setValue(uid);
             databaseReference2.child("complaint_create_date").setValue(currDate);
             databaseReference2.child("complaint_create_time").setValue(currTime);
-        }else{
+        } else {
             databaseReference2 = FirebaseDatabase.getInstance().getReference("ongoing_complaints").child(ownerUid);
             databaseReference2.child("complaint_id").setValue(ownerUid);
             databaseReference2.child("Citizen_uid").setValue(ownerUid);
@@ -226,7 +236,8 @@ public class mEventListener extends Service implements com.google.android.gms.lo
             databaseReference2.child("complaint_create_time").setValue(currTime);
         }
     }
-    private void copAlert(Location location){
+
+    private void copAlert(Location location) {
         Log.d("onchanged/////////////", String.valueOf(location));
         //Adding the citizen updated location to ongoing_complaints object of Firebase db.
         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("ongoing_complaints")
@@ -235,37 +246,39 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         geoFire.setLocation("citizen_location", new GeoLocation(location.getLatitude(), location.getLongitude()));
         mLastLocation = location;
         //If the location is set for first time, then set the complaint created coordinates to the ongoing_complaints object and find the nearest cop.
-        if(!locationSet) {
+        if (!locationSet) {
             locationSet = true;
             databaseReference2.child("complaint_create_loc_lat").setValue(location.getLatitude());
             databaseReference2.child("complaint_create_loc_lng").setValue(location.getLongitude());
             getNearestCop();
         }
     }
-    private void copAlertChain(){
-        Log.d("ChainLocation:////////",ownerLat+","+ownerLong);
+
+    private void copAlertChain() {
+        Log.d("ChainLocation:////////", ownerLat + "," + ownerLong);
         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("Ongoing_complaints")
                 .child(ownerUid);
         geoFire = new GeoFire(databaseReference1);
-        geoFire.setLocation("citizen_location",new GeoLocation(ownerLat,ownerLong));
+        geoFire.setLocation("citizen_location", new GeoLocation(ownerLat, ownerLong));
         databaseReference2.child("complaint_create_loc_lat").setValue(ownerLong);
         databaseReference2.child("complaint_create_loc_lng").setValue(ownerLong);
         getNearestCop();
 
     }
+
     public void getNearestCop() {
-        if(owner){
-            citizenID=uid;
-            complaint_ID=String.valueOf(complaint_id);
-            latitude=mLastLocation.getLatitude();
-            longitude=mLastLocation.getLongitude();
-        }else{
-            citizenID=ownerUid;
-            complaint_ID=ownerUid;
-            latitude=ownerLat;
-            longitude=ownerLong;
+        if (owner) {
+            citizenID = uid;
+            complaint_ID = String.valueOf(complaint_id);
+            latitude = mLastLocation.getLatitude();
+            longitude = mLastLocation.getLongitude();
+        } else {
+            citizenID = ownerUid;
+            complaint_ID = ownerUid;
+            latitude = ownerLat;
+            longitude = ownerLong;
         }
-        if(copFound){
+        if (copFound) {
             DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("ongoing_complaints")
                     .child(String.valueOf(complaint_id));
             geoFire = new GeoFire(databaseReference1);
@@ -348,7 +361,8 @@ public class mEventListener extends Service implements com.google.android.gms.lo
             }
         });
     }
-    private void noCopFound(){
+
+    private void noCopFound() {
 
 
         //Removing the current stored location from Firebase db and stopping the live location updates.
@@ -379,7 +393,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
 
 //            DatabaseReference removeCompDetailsRef = FirebaseDatabase.getInstance().getReference("ongoing_complaints").child(String.valueOf(complaint_id));
 //            removeCompDetailsRef.removeValue();
-            databaseReference2 = FirebaseDatabase.getInstance().getReference("ongoing_complaints").child(String.valueOf(owner?complaint_id:ownerUid));
+            databaseReference2 = FirebaseDatabase.getInstance().getReference("ongoing_complaints").child(String.valueOf(owner ? complaint_id : ownerUid));
             databaseReference2.removeValue();
 
         } catch (Exception e) {
@@ -398,7 +412,7 @@ public class mEventListener extends Service implements com.google.android.gms.lo
     Utility functions essentially written to clear up the mess up above
     */
     //Code To be Run Every Time the Service starts.
-    private void initLocationProviders(){
+    private void initLocationProviders() {
         fusedLocationProviderClient = getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
             @Override
@@ -416,30 +430,48 @@ public class mEventListener extends Service implements com.google.android.gms.lo
         mLocationRequest.setInterval(UPDATE_INTERVAL);
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
     }
+
     private void getNetworkState(Context context) {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         try {
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
             networkState = (activeNetworkInfo != null && activeNetworkInfo.isConnected());
-        }catch(Exception e){
+        } catch (Exception e) {
             networkState = false;
         }
     }
-    private void handleIntentCalls(Intent intent){
+
+    private void handleIntentCalls(Intent intent) {
         try {
             boolean term = intent.getBooleanExtra("TERMINATE", false);
             if (term) {
                 stopForeground(true);
                 stopSelf();
             }
-            if(intent.getBooleanExtra("startSOS",false)){
+            if (intent.getBooleanExtra("startSOS", false)) {
                 initLocationProviders();
                 getNetworkState(this);
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+
                 owner=true;
                 if(!networkState) {
                     BluetoothHelperKt.stopDiscovery(this);
                     BluetoothHelperKt.stopAdvertising(this);
+                    try {
+                        Task<Location> task = LocationServices.getFusedLocationProviderClient(this).getLastLocation();
+                        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                if(location!=null);
+                                BluetoothHelperKt.startAdvertising(mEventListener.this,String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()),true," ");
+                            }
+                        });
+                    }catch(Exception e){
+                        Log.e(TAG, "handleIntentCalls: LastLoactionProblem");
+                    }
                 }
                 handleLocationRequests();
             }

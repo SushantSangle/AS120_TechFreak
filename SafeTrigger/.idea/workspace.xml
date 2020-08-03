@@ -6,9 +6,8 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="com.techfreak" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
@@ -21,10 +20,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/SafeTrigger/SOS_placeholder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/SafeTrigger/SOS_placeholder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/BluetoothHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/BluetoothHelper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/FiveTap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/FiveTap.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/SafeTrigger/splash.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/SafeTrigger/splash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/NotificationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/NotificationHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/mEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/mEventListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,7 +168,7 @@
     <property name="DEBUGGABLE_PROCESS" value="com.Techfreaks.SafeTrigger" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="4200637bf213355f" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-08-03T01:05:44.289Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-08-03T07:40:58.632Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
@@ -432,22 +429,22 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="225" height="280" key="Git.Branch.Popup/0.0.1920.1080@0.0.1920.1080" timestamp="1596340278791" />
-    <state width="1874" height="279" key="GridCell.Tab.0.bottom" timestamp="1596418190244">
+    <state width="1874" height="314" key="GridCell.Tab.0.bottom" timestamp="1596445824393">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1596418190244" />
-    <state width="1874" height="279" key="GridCell.Tab.0.center" timestamp="1596418190243">
+    <state width="1874" height="314" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1596445824393" />
+    <state width="1874" height="314" key="GridCell.Tab.0.center" timestamp="1596445824392">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="279" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1596418190243" />
-    <state width="1874" height="279" key="GridCell.Tab.0.left" timestamp="1596418190243">
+    <state width="1874" height="314" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1596445824392" />
+    <state width="1874" height="314" key="GridCell.Tab.0.left" timestamp="1596445824392">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="279" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1596418190243" />
-    <state width="1874" height="279" key="GridCell.Tab.0.right" timestamp="1596418190243">
+    <state width="1874" height="314" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1596445824392" />
+    <state width="1874" height="314" key="GridCell.Tab.0.right" timestamp="1596445824392">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="279" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1596418190243" />
+    <state width="1874" height="314" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1596445824392" />
     <state width="1874" height="279" key="GridCell.Tab.1.bottom" timestamp="1596418223715">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -496,14 +493,14 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="714" y="417" key="edit.logcat.filter.dialog.dimensions/0.0.1920.1080@0.0.1920.1080" timestamp="1596317192616" />
-    <state x="1154" y="170" width="657" height="787" key="find.popup" timestamp="1596191371680">
+    <state x="1154" y="170" width="661" height="791" key="find.popup" timestamp="1596444280839">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="1154" y="170" width="657" height="787" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1596191371680" />
-    <state x="624" y="263" key="run.anything.popup" timestamp="1595687565085">
+    <state x="1154" y="170" width="661" height="791" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1596444280839" />
+    <state x="624" y="263" key="run.anything.popup" timestamp="1596444189415">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="624" y="263" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1595687565085" />
+    <state x="624" y="263" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1596444189415" />
     <state x="623" y="266" width="672" height="678" key="search.everywhere.popup" timestamp="1596182709470">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -514,15 +511,6 @@
     <state x="690" y="487" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1594922736798" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/Techfreaks/Services/mEventListener.java</url>
-          <line>201</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
         <watch expression="copSearch" language="JAVA" />
